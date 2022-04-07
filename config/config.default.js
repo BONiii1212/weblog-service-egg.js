@@ -53,6 +53,10 @@ module.exports = appInfo => {
     credentials: true,//允许cookie跨域,有什么危害，可以使用egg-jwt制作
     allowMethods:'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   }
+
+  config.jwt = {
+    secret:"lyb"
+  }
   
   return {
     ...config,

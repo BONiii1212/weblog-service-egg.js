@@ -16,4 +16,9 @@ exports.mysql = {
 exports.cors = {
   enable:true,
   package:'egg-cors'
-}
+};
+//开启jwt登录鉴权
+exports.jwt = {
+  enable: true,
+  package: "egg-jwt"
+};

@@ -1,5 +1,4 @@
 'use strict'
-
 const Controller = require('egg').Controller;
 
 class MainController extends Controller {
@@ -14,10 +13,17 @@ class MainController extends Controller {
   
         const res = await this.app.mysql.query(sql)
         if(res.length>0){
-            //登录成功,进行session缓存
-            let openId=new Date().getTime()
-            this.ctx.session.openId={ 'openId':openId }
-            this.ctx.body={'data':'登录成功','openId':openId}  
+            // 登录成功,进行session缓存
+            // let openId=new Date().getTime()
+            // this.ctx.session.openId={ 'openId':openId }
+            // this.ctx.body={'data':'登录成功','openId':openId}
+            //登录成功返回token
+            const token = this.app.jwt.sign(
+                {userName,password},
+                this.app.config.jwt.secret,
+                {expiresIn:'1800s'})
+            console.log(token)
+            this.ctx.body = {'data':'登录成功','token':token}
         }else{
             this.ctx.body={data:'登录失败'}
         } 
