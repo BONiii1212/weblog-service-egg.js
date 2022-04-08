@@ -6,9 +6,9 @@ class MainController extends Controller {
         this.ctx.body = 'hi success'
     }
     async checkLogin(){
-        let userName = this.ctx.request.body.userName
+        let username = this.ctx.request.body.username
         let password = this.ctx.request.body.password
-        const sql = " SELECT userName FROM admin_user WHERE userName = '"+userName +
+        const sql = " SELECT username FROM admin_user WHERE username = '"+username +
                     "' AND password = '"+password+"'"
   
         const res = await this.app.mysql.query(sql)
@@ -19,18 +19,17 @@ class MainController extends Controller {
             // this.ctx.body={'data':'登录成功','openId':openId}
             //登录成功返回token
             const token = this.app.jwt.sign(
-                {userName,password},
+                {username,password},
                 this.app.config.jwt.secret,
                 {expiresIn:'1800s'})
-            console.log(token)
-            this.ctx.body = {'data':'登录成功','token':token}
+            this.ctx.body = {'status':'success','username':username,'token':token}
         }else{
             this.ctx.body={data:'登录失败'}
         } 
     }
     async getTypeInfo(){
         const resType = await this.app.mysql.select('type')
-        this.ctx.body={data:resType}
+        this.ctx.body=resType
     }
     async addArticle(){
         let tmpArticle = this.ctx.request.body
@@ -41,10 +40,6 @@ class MainController extends Controller {
             isSuccess:insertSuccess,
             insertId:insertId
         }
-        console.log({
-            isSuccess:insertSuccess,
-            insertId:insertId
-        })
     }
     async updateArticle(){
         let tmpArticle = this.ctx.request.body
@@ -85,7 +80,7 @@ class MainController extends Controller {
         'FROM article LEFT JOIN type ON article.type_id = type.Id '+
         'WHERE article.id='+id
         const result = await this.app.mysql.query(sql)
-        this.ctx.body={data:result}
+        this.ctx.body=result
     }
 }
 

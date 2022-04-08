@@ -1,7 +1,7 @@
 // const whiteList = ['/admin/index','/admin/checkLogin']
 module.exports=options=>{
     return async function(ctx,next){
-        let token = ctx.request.header.authorization //拿到token
+        let token = ctx.request.headers.authorization //拿到token
         // if(!whiteList.some(item=>item==url)){ //如果不在白名单中
         //     let token = ctx.request.header.authorization //拿到token
         // }
@@ -15,8 +15,7 @@ module.exports=options=>{
                     message:error.message
                 };
                 return
-            }
-            
+            }    
         }else{
             ctx.status = 401;
             ctx.body = {
