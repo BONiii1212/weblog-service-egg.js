@@ -1,5 +1,7 @@
 'use strict'
 
+const { response } = require('express');
+
 const Controller = require('egg').Controller;
 
 class MainController extends Controller {
@@ -18,16 +20,15 @@ class MainController extends Controller {
             // let openId=new Date().getTime()
             // this.ctx.session.openId={ 'openId':openId }
             // this.ctx.body={'data':'登录成功','openId':openId}
-            //存储用户状态表
-            
+            //存储用户状态表          
             //登录成功返回token
             const token = this.app.jwt.sign(
-                {username,password},
+                {username},
                 this.app.config.jwt.secret,
                 {expiresIn:'1800s'})
             let tmpUserStatus = {username:username,token:token}
             const result = await this.app.mysql.insert('user_status',tmpUserStatus)
-            this.ctx.body = {'status':'success','username':username,'token':token}
+            this.ctx.body = {'status':'success','username':username,'token':token,}
         }else{
             this.ctx.body={data:'登录失败'}
         } 
