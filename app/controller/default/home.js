@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const { Feed } = require('feed');
 
 class HomeController extends Controller {
   async index() {
@@ -15,11 +16,46 @@ class HomeController extends Controller {
               "article.addTime as addTime,"+
               'article.url as url,'+
               'type.typeName as typeName '+
-              'FROM article LEFT JOIN type ON article.type_id = type.id'
+              'FROM article LEFT JOIN type ON article.type_id = type.id '+
+              'ORDER BY article.id DESC '
     const results = await this.app.mysql.query(sql)
     this.ctx.body = {data:results}
   }
 
+  async getRSS(){
+    let sql = 'SELECT article.id as id,' +
+    'article.title as title,'+
+    'article.introduce as introduce,'+
+    "article.addTime as addTime,"+
+    'article.url as url,'+
+    'type.typeName as typeName '+
+    'FROM article LEFT JOIN type ON article.type_id = type.id '+
+    'ORDER BY article.id DESC '
+    const result = await this.app.mysql.query(sql)
+    const posts = result.filter(item=>item.id!==0 && item.id!==1)
+    const feed = new Feed({
+      title: "BONiii's blog RSS",
+      description: "you can describe my rss to easy know what I post in a first time",
+      link: "http://121.5.179.205:3000",
+      author: {
+        name: "BONiii",
+        email: "18458856673@163.com",
+        link: "http://121.5.179.205:3000"
+      }
+    });
+    posts.forEach(post => {
+      feed.addItem({
+        id: post.id,
+        title: post.title,
+        description: post.introduce,
+        data: post.addTime,
+        link: `http://121.5.179.205:3000/posts/${post.id}`,
+      })
+    });
+    this.ctx.set({'Content-type': 'text/xml'})
+    this.ctx.body = feed.rss2()
+
+  }
   //指定id文章的详细信息
   async getArticleById(){
     let id = this.ctx.params.id
@@ -51,7 +87,8 @@ class HomeController extends Controller {
               'article.url as url,'+
               'type.typeName as typeName '+
               'FROM article LEFT JOIN type ON article.type_id = type.id '+
-              'WHERE type_id='+id 
+              'WHERE type_id='+id+' '+
+              'ORDER BY article.id DESC ' 
     const results = await this.app.mysql.query(sql)
     this.ctx.body = {data:results}
   }

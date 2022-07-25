@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>article title</title>
+        <link>http://121.5.179.205:3000</link>
+        <description>article introduce</description>
+        <lastBuildDate>Mon, 25 Jul 2022 14:50:55 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[JWT]]></title>
+            <link>http://121.5.179.205:3000/posts/7</link>
+            <guid>http://121.5.179.205:3000/posts/7</guid>
+            <description><![CDATA[JWT加密过程与解密过程]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Overcoming Language Priors with Self-supervised Learningfor Visual Question Answering]]></title>
+            <link>http://121.5.179.205:3000/posts/6</link>
+            <guid>http://121.5.179.205:3000/posts/6</guid>
+            <description><![CDATA[自监督双损失训练视觉问答模型消除文本偏见]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Answer Questions with Right Image Regions: A Visual Attention Regularization Approach]]></title>
+            <link>http://121.5.179.205:3000/posts/5</link>
+            <guid>http://121.5.179.205:3000/posts/5</guid>
+            <description><![CDATA[提出了注意力的忠实性]]></description>
+        </item>
+        <item>
+            <title><![CDATA[RUBi: Reducing Unimodal Biasesfor Visual Question Answering]]></title>
+            <link>http://121.5.179.205:3000/posts/4</link>
+            <guid>http://121.5.179.205:3000/posts/4</guid>
+            <description><![CDATA[通过纯文本分支来消除视觉问答的文本偏见]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Counterfactual VQA: A Cause-Effect Look at Language Bias]]></title>
+            <link>http://121.5.179.205:3000/posts/3</link>
+            <guid>http://121.5.179.205:3000/posts/3</guid>
+            <description><![CDATA[通过因果逻辑推断的原理对VQA模型指定特定训练方式，达到消除文本偏见的效果]]></description>
+        </item>
+        <item>
+            <title><![CDATA[LPF: A Language-Prior Feedback Objective Function forDe-biased Visual Question Answering]]></title>
+            <link>http://121.5.179.205:3000/posts/2</link>
+            <guid>http://121.5.179.205:3000/posts/2</guid>
+            <description><![CDATA[通过将focus loss应用于视觉问答模型中，平衡正负样本的比例实现消除文本偏见]]></description>
+        </item>
+        <item>
+            <title><![CDATA[BONiii]]></title>
+            <link>http://121.5.179.205:3000/posts/1</link>
+            <guid>http://121.5.179.205:3000/posts/1</guid>
+            <description><![CDATA[无]]></description>
+        </item>
+        <item>
+            <title><![CDATA[推荐]]></title>
+            <link>http://121.5.179.205:3000/posts/0</link>
+            <guid>http://121.5.179.205:3000/posts/0</guid>
+            <description><![CDATA[无]]></description>
+        </item>
+    </channel>
+</rss>

@@ -5,4 +5,5 @@ module.exports = app => {
     router.get('/default/getArticleById/:id', controller.default.home.getArticleById);
     router.get('/default/getTypeInfo', controller.default.home.getTypeInfo);
     router.get('/default/getListByTypeId/:id', controller.default.home.getListByTypeId);
+    router.get('/default/rss', controller.default.home.getRSS);
   };
